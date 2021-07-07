@@ -12,4 +12,14 @@ class Exam < ActiveRecord::Base
     def class_average
         self.student_exams.all.average(:grade)
     end
+
+    def self.used_exams
+        Exam.all.collect do |exam|
+        
+        exam if exam.students.count >= 1
+        end
+    end
+
+    
+
 end
